@@ -1,0 +1,42 @@
+<h1>Student Information</h1>
+
+<%= form_with model: @student do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+     <% @student.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :father_name %><br>
+    <%= form.text_field :father_name %>
+     <% @student.errors.full_messages_for(:father_name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :gender %><br>
+    <%= form.select :gender,["male"  , "female"] %>
+     <% @student.errors.full_messages_for(:gender).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :date_of_birth %>
+    <%= form.date_field :date_of_birth %>
+  </div>
+  <div>
+    <%= form.label :roll_no %>
+    <%= form.number_field :roll_no %>
+  </div>
+
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+
+  <br>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
