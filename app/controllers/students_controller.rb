@@ -16,7 +16,7 @@ def index
     # @user = User.find_by(params[:id])
     @student = Student.new(student_params)
     if @student.save
-      redirect_to @student
+      redirect_to sessions_new_path 
     else
       render :new, status: :unprocessable_entity
     end

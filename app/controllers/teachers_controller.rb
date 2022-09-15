@@ -15,9 +15,9 @@ class TeachersController < ApplicationController
     
     @teacher = Teacher.new(teacher_params)
     if @teacher.save
-      redirect_to new_teacher_path
-    else
-      render :new
+      redirect_to sessions_new_path 
+      else
+      redirect_to new_teachers_path
     end
   end
   def edit

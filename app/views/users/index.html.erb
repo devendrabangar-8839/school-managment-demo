@@ -1,11 +1,10 @@
-<h1>Articles</h1>
+<h1>users</h1>
 
 <ul>
   <% @users.each do |user| %>
     <li>
+      <%= link_to user.id, user %>
       <%= link_to user.role, user %>
     </li>
   <% end %>
 </ul>
-
-<%= link_to "New User", new_user_path %>

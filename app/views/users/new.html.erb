@@ -10,7 +10,7 @@
   </div>
 
   <div>
-    <%= form.label :password_digest %><br>
+    <%= form.label :password %><br>
     <%= form.password_field :password_digest %>
      <% @user.errors.full_messages_for(:password_digest).each do |message| %>
       <div><%= message %></div>
