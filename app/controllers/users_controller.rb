@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
+  after_action :current_user, except: [:show]
   def index
-    @users = User.all
+    if @current_user = User.show
+      redirect_to sessions_new_path
+    else
+    
+      @users = User.all
+    end
   end
 
   def show
@@ -8,7 +14,10 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+ 
+    
+      @user = User.new
+   
   end
 
   def create

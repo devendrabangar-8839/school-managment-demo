@@ -1,12 +1,2 @@
-<h1>Teacher - Info</h1>
+<%= render "/teachers/index" %>
 
-<ul>
-  <%binding.pry%>
-  <% @teachers.each do |teacher| %>
-    <li>
-      <%= link_to teacher.name, teacher %>
-    </li>
-  <% end %>
-</ul>
-
-<%= link_to "New User", new_user_path %>

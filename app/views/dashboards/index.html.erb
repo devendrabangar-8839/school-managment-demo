@@ -1,7 +1,6 @@
 <% if @current_user.student?%>
-  <%= render "students/"%>
-<% elsif @current_user.teacher?%>
-  <%= render "teachers/"%>
-  <% else @current_user.admin?%>
-  <%= render "admins/"%>
+  <%= render "students/index"%>
+<% else @current_user.teacher?%>
+  <%= render "teachers/index"%>
+
 <% end%>

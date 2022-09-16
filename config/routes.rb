@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   resources :teachers
   resources :students
   resource :session, only: %i[new create destroy]
-
+  get "signup", to: "users#new"
+  get "login", to: "sessions#new"
+  post "login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
 
 
 end
