@@ -8,12 +8,13 @@ def index
   end
 
   def new
+    @user_id = params[:id]
     @student = Student.new
   end
 
-
+ 
   def create
-    # @user = User.find_by(params[:id])
+    
     @student = Student.new(student_params)
     if @student.save
       redirect_to sessions_new_path 

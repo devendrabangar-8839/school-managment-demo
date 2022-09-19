@@ -1,5 +1,5 @@
 class Student < ApplicationRecord
-
+  
   belongs_to :user
   validates :name, presence: true
   validates :father_name, presence: true

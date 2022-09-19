@@ -5,6 +5,7 @@ class TeachersController < ApplicationController
 
   def show
     @teacher = Teacher.find(params[:id])
+    
   end
 
   def new
@@ -17,7 +18,7 @@ class TeachersController < ApplicationController
     if @teacher.save
       redirect_to sessions_new_path 
       else
-      redirect_to new_teachers_path
+      redirect_to new_teacher_path
     end
   end
   def edit

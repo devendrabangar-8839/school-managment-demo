@@ -1,12 +1,11 @@
 class SessionsController < ApplicationController
-  before_action :current_user, except: [:create, :new]
-
+  before_action :authenticate_user!, except: [:create, :new]
   def index
     redirect_to root_path
   end
   
   def new
-    
+     redirect_to root_path and return if current_user
     user = User.new
   end
 
@@ -19,11 +18,12 @@ class SessionsController < ApplicationController
       flash.now.alert = 'Email or password is invalid'
       redirect_to '/login'
     end
+
   end
   def destroy
-  session[:user_id] = nil
-  flash[:notice] = "You have been signed out!"
-  redirect_to ''
+    session[:user_id] = nil
+    flash[:notice] = "You have been signed out!"
+    redirect_to '/logout'
   end
 
 end
