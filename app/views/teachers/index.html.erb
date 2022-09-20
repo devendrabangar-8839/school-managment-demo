@@ -1,4 +1,19 @@
+<h1>Hello teacher</h1>
+
+<ul>
+  <% @teachers.each do |teacher| %>
+  <li>
+    <a href="/teacher/<%= teacher.id %>">
+      
+    <%= teacher.id %>  
+    <%= teacher.name %>
+    
+
+    
+   
+  </li>
 
 
-<h1>teacher main index</h1>
-<%= @teachers.name %>
+
+  <% end %>
+</ul>

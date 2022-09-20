@@ -1,6 +1,7 @@
 class Teacher < ApplicationRecord
   
   belongs_to :user
+  has_many :classnames
   validates :name, presence: true
   validates :gender, presence: true
   validates :date_of_birth, presence: true

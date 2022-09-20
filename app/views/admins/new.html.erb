@@ -18,8 +18,7 @@
     <%= form.date_field :date_of_birth %>
   </div>
   <div>
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
   <br>
 

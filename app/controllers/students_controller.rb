@@ -1,10 +1,12 @@
 class StudentsController < ApplicationController
+  before_action :authenticate_user!, only: [:show]
 def index
     @students = Student.all
   end
 
   def show
     @student = Student.find(params[:id])
+     #@user = User.find(params[:id])
   end
 
   def new
@@ -17,7 +19,7 @@ def index
     
     @student = Student.new(student_params)
     if @student.save
-      redirect_to sessions_new_path 
+      redirect_to sessions_path 
     else
       render :new, status: :unprocessable_entity
     end

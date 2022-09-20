@@ -1,10 +1,13 @@
 class TeachersController < ApplicationController
+  before_action :authenticate_user!, only: [:show]
   def index
     @teachers = Teacher.all
+
   end
 
   def show
     @teacher = Teacher.find(params[:id])
+    #@user = User.find(params[:id])
     
   end
 

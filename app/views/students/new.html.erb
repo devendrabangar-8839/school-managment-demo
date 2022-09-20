@@ -32,7 +32,7 @@
     <%= form.number_field :roll_no %>
   </div>
   <div>
-    <%= form.hidden_field :user_id, value: @user_id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
   <br>

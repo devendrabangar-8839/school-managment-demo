@@ -1,4 +1,29 @@
 <h1><%= @teacher.name %></h1>
 
-<p><%= @teacher.subject_name %></p>
+      
 
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Teacher Name</th>
+      <th scope="col">gender</th>
+      
+      
+      <th scope="col">Date-of-Birth</th>
+      <th scope="col">Salery</th>
+      <th scope="col">Subject</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @teacher.name %></td>
+      <td><%= @teacher.gender %></td>
+      
+      <td><%= @teacher.date_of_birth %></td>
+      <td><%= @teacher.salery %></td>s
+      <td><%= @teacher.subject_name%></td>
+    </tr>
+  </tbody>
+</table>
