@@ -1,29 +1,39 @@
-<h1><%= @teacher.name %></h1>
 
-      
+<h1><center>Teacher - Information</center></h1>
+<br>
+  <div class="table-responsive">
+    <table class="table align-middle mb-0 bg-white">
+      <thead class="bg-light">
+        <tr>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Date of Birth</th>
+          <th>Salery</th>
+          <th>Subject</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>          
+            <p class="fw-bold mb-1"><%= @teacher.name %></p>    
+          </td>
+          <td>
+            <p class="fw-normal mb-1"><%= @teacher.gender %></p>            
+          </td>
+          <td>
+            <p class="fw-normal mb-1"><%= @teacher.date_of_birth %></p>            
+          </td>
+          <td>
+            <p class="fw-normal mb-1"><%= @teacher.salery %></p>            
+          </td>
+          <td>
+            <p class="fw-normal mb-1"><%= @teacher.subject_name%></p>            
+          </td>
 
-
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Teacher Name</th>
-      <th scope="col">gender</th>
-      
-      
-      <th scope="col">Date-of-Birth</th>
-      <th scope="col">Salery</th>
-      <th scope="col">Subject</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @teacher.name %></td>
-      <td><%= @teacher.gender %></td>
-      
-      <td><%= @teacher.date_of_birth %></td>
-      <td><%= @teacher.salery %></td>s
-      <td><%= @teacher.subject_name%></td>
-    </tr>
-  </tbody>
-</table>
+          <td>
+            <button type="button" class="btn btn-link btn-sm btn-rounded">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

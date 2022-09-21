@@ -19,7 +19,7 @@ def index
     
     @student = Student.new(student_params)
     if @student.save
-      redirect_to sessions_path 
+      redirect_to sessions_new_path 
     else
       render :new, status: :unprocessable_entity
     end
@@ -38,6 +38,7 @@ def index
   end
 
   def student_params
-    params.require(:student).permit(:name, :father_name,  :gender, :date_of_birth, :roll_no, :user_id)
+    params.require(:student).permit(:name, :father_name,  :gender, :date_of_birth, :roll_no, :user_id, {:address_attributes => [:id, :address]}
+      )
   end
 end

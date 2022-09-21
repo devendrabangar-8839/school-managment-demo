@@ -1,18 +1,19 @@
 class ClassnamesController < ApplicationController
-def index
-  @classnames = Classname.all
-end
-def new
+  def index
+    @classnames = Classname.all
+  end
+
+  def new
     @classname = Classname.new
   end
 
   def create
-    
     @classname = Classname.new(classname_params)
     if @classname.save
       redirect_to @classname
     end
   end
+
   def edit
     @classname = Classname.find(params[:id])
   end
