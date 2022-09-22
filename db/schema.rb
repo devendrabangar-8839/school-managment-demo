@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_21_114557) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_22_095946) do
   create_table "addresses", force: :cascade do |t|
-    t.string "address"
+    t.string "address_name"
     t.string "addressable_type"
     t.integer "addressable_id"
     t.datetime "created_at", null: false
@@ -27,8 +27,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_114557) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "address_id"
-    t.index ["address_id"], name: "index_admins_on_address_id"
     t.index ["user_id"], name: "index_admins_on_user_id"
   end
 
@@ -53,7 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_114557) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.integer "contact"
+    t.integer "contact_name"
     t.string "contactable_type"
     t.integer "contactable_id"
     t.datetime "created_at", null: false
@@ -70,8 +68,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_114557) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "address_id"
-    t.index ["address_id"], name: "index_students_on_address_id"
     t.index ["user_id"], name: "index_students_on_user_id"
   end
 
@@ -84,8 +80,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_114557) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "address_id"
-    t.index ["address_id"], name: "index_teachers_on_address_id"
     t.index ["user_id"], name: "index_teachers_on_user_id"
   end
 
@@ -97,14 +91,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_114557) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "admins", "addresses"
   add_foreign_key "admins", "users"
   add_foreign_key "classes", "students", column: "students_id"
   add_foreign_key "classes", "teachers", column: "teachers_id"
   add_foreign_key "classnames", "students"
   add_foreign_key "classnames", "teachers"
-  add_foreign_key "students", "addresses"
   add_foreign_key "students", "users"
-  add_foreign_key "teachers", "addresses"
   add_foreign_key "teachers", "users"
 end

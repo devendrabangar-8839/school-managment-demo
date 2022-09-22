@@ -38,7 +38,7 @@ def index
   end
 
   def student_params
-    params.require(:student).permit(:name, :father_name,  :gender, :date_of_birth, :roll_no, :user_id, {:address_attributes => [:id, :address]}
+    params.require(:student).permit(:name, :father_name,  :gender, :date_of_birth, :roll_no, :user_id, {:address_attributes => [:id, :address_name]}
       )
   end
 end

@@ -1,0 +1,6 @@
+  <div>
+    <%= form.label :address %>
+      <%= form.fields_for :address do |addresses_subform| %>
+        <%= addresses_subform.text_field :address_name %>
+      <% end %>
+  </div>

@@ -25,6 +25,6 @@ class AdminsController < ApplicationController
   end
 
   def admin_params
-    params.require(:admin).permit(:name, :gender, :date_of_birth, :user_id)
+    params.require(:admin).permit(:name, :gender, :date_of_birth, :user_id, :address_attributes => [:id, :address_name])
   end
 end

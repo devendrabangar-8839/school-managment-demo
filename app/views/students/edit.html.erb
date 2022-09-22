@@ -1,4 +1,4 @@
-<h1>Student Information</h1>
+<h1>Update Student Information</h1>
 
 <%= form_with model: @student do |form| %>
   <div>
@@ -33,14 +33,16 @@
     <%= form.number_field :roll_no %>
   </div>
   <br>
-  <div>
+    <div>
     <%= form.label :address %>
-    <%= form.fields_for :address do |address_subform| %>
-      <%= address_subform.text_field :address %>
-    <% end %>
+      <%= form.fields_for :address do |addresses_subform| %>
+        <%= addresses_subform.text_field :address_name %>
+      <% end %>
   </div>
   <div>
     <%= form.hidden_field :user_id, value: current_user.id %>
+    
+
   </div>
 
   <br>

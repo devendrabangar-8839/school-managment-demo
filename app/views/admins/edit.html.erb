@@ -1,0 +1,28 @@
+<h1>Update - Admin Details</h1>
+
+<%= form_with model: @admin do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+     
+  </div>
+
+  <div>
+    <%= form.label :gender %><br>
+    <%= form.select :gender,["male"  , "female"] %>
+     
+  </div>
+  <br>
+  <div>
+    <%= form.label :date_of_birth %>
+    <%= form.date_field :date_of_birth %>
+  </div>
+  <div>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+  <br>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

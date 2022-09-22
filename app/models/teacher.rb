@@ -2,8 +2,8 @@ class Teacher < ApplicationRecord
   
   belongs_to :user
   has_many :classnamess
-  has_many :addresses, :as => :addressable
-  has_many :contacts, :as => :contactable
+  has_one :address, :as => :addressables
+  has_one :contact, :as => :contactable
   validates :name, presence: true
   validates :gender, presence: true
   validates :date_of_birth, presence: true

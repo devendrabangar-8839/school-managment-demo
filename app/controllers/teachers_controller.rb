@@ -27,8 +27,17 @@ class TeachersController < ApplicationController
   def edit
     @teacher = Teacher.find(params[:id])
   end
+  def update
+    @teacher = Teacher.find(params[:id])
+
+    if @teacher.update(teacher_params)
+      redirect_to @teacher
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   def teacher_params
-    params.require(:teacher).permit(:name, :gender, :date_of_birth, :salery, :subject_name, :user_id)
+    params.require(:teacher).permit(:name, :gender, :date_of_birth, :salery, :subject_name, :user_id, :address_attributes => [:id, :address_name])
   end
 end

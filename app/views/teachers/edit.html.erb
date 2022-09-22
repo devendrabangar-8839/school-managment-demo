@@ -1,0 +1,40 @@
+<h1>Update - Teacher Information</h1>
+
+<%= form_with model: @teacher do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+     <% @teacher.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :gender %><br>
+    <%= form.select :gender,["male"  , "female"] %>
+     <% @teacher.errors.full_messages_for(:gender).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :date_of_birth %>
+    <%= form.date_field :date_of_birth %>
+  </div>
+  <div>
+    <%= form.label :salery %>
+    <%= form.number_field :salery %>
+  </div>
+  <div>
+    <%= form.label :subject_name %>
+    <%= form.select :subject_name,["hindi"  , "english" , "mathes", "science" , "evm"] %>
+  </div>
+  <div>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+  <br>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
