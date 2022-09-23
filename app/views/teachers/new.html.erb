@@ -30,6 +30,15 @@
     <%= form.select :subject_name,["hindi"  , "english" , "mathes", "science" , "evm"] %>
   </div>
   <div>
+    <%= form.label :contact_number %>
+    <%= form.number_field :contact_number %>    
+  </div>
+  <br>
+  <div>
+    <%= form.label :address %>
+    <%= form.text_field :address %>    
+  </div>  
+  <div>
     <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
   <br>

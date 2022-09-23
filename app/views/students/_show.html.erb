@@ -12,7 +12,6 @@
           <th>Roll No.</th>
           <th>Adderss</th>
           <th>Contact</th>
-          <th>Teacher name </th>
           <th>Edit Details </th>
         </tr>
       </thead>
@@ -33,25 +32,11 @@
           <td>
             <p class="fw-normal mb-1"><%= @student.roll_no%></p>            
           </td>
-          <td>
-            <p class="fw-normal mb-1"><%= @student.address%></p>            
-          </td>
-          <td>
-            <p class="fw-normal mb-1"><%= @student.contact_number%></p>            
-          </td>
-          <td>
-            
-            <p class="fw-normal mb-1"><%= @student.teachers%></p>            
-          </td>
           
           <td>
             <button type="button" class="btn btn-link btn-sm btn-rounded"><%= link_to 'Edit', edit_student_path %></button>
-          </td>
-          <td>
-            <button type="button" class="btn btn-link btn-sm btn-rounded"><%= link_to 'Show-teachers', teacher_path %></button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-StudentTeacher.last.student.teachers

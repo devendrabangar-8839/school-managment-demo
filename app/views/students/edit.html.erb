@@ -33,15 +33,17 @@
     <%= form.number_field :roll_no %>
   </div>
   <br>
-    <div>
-    <%= form.label :address %>
-      <%= form.fields_for :address do |addresses_subform| %>
-        <%= addresses_subform.text_field :address_name %>
-      <% end %>
+  <div>
+    <%= form.label :contact_number %>
+    <%= form.number_field :contact_number %>    
   </div>
+  <br>
+  <div>
+    <%= form.label :address %>
+    <%= form.text_field :address %>    
+  </div> 
   <div>
     <%= form.hidden_field :user_id, value: current_user.id %>
-    
 
   </div>
 

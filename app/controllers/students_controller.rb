@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
   before_action :authenticate_user!, only: [:show]
 def index
+    
     @students = Student.all
   end
 
@@ -16,7 +17,7 @@ def index
 
  
   def create
-    
+   
     @student = Student.new(student_params)
     if @student.save
       redirect_to sessions_new_path 
@@ -38,7 +39,7 @@ def index
   end
 
   def student_params
-    params.require(:student).permit(:name, :father_name,  :gender, :date_of_birth, :roll_no, :user_id, {:address_attributes => [:id, :address_name]}
-      )
+    params.require(:student).permit(:name, :father_name,  :gender, :date_of_birth, :roll_no, :user_id, :contact_number,
+     :address)
   end
 end

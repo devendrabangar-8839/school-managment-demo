@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_22_095946) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_23_100919) do
   create_table "addresses", force: :cascade do |t|
     t.string "address_name"
     t.string "addressable_type"
@@ -20,6 +20,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_22_095946) do
     t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
   end
 
+  create_table "admincontrols", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "student_id"
+    t.integer "teacher_id"
+    t.index ["student_id"], name: "index_admincontrols_on_student_id"
+    t.index ["teacher_id"], name: "index_admincontrols_on_teacher_id"
+  end
+
   create_table "admins", force: :cascade do |t|
     t.string "name"
     t.string "gender"
@@ -27,6 +36,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_22_095946) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "contact_number"
+    t.string "address"
     t.index ["user_id"], name: "index_admins_on_user_id"
   end
 
@@ -59,6 +70,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_22_095946) do
     t.index ["contactable_type", "contactable_id"], name: "index_contacts_on_contactable"
   end
 
+  create_table "student_teachers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "student_id"
+    t.integer "teacher_id"
+    t.index ["student_id"], name: "index_student_teachers_on_student_id"
+    t.index ["teacher_id"], name: "index_student_teachers_on_teacher_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "name"
     t.string "father_name"
@@ -68,6 +88,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_22_095946) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "contact_number"
+    t.string "address"
     t.index ["user_id"], name: "index_students_on_user_id"
   end
 
@@ -80,6 +102,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_22_095946) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "contact_number"
+    t.string "address"
     t.index ["user_id"], name: "index_teachers_on_user_id"
   end
 
