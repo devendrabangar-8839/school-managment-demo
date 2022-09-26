@@ -1,10 +1,11 @@
-
-<h1><center>Students - Information</center></h1>
-<br>
+<div class="container">
+  <h1><center>Students - Information</center></h1>
+  <p><a href="javascript:void(0)">Back</a></p>
   <div class="table-responsive">
     <table class="table align-middle mb-0 bg-white">
       <thead class="bg-light">
-        <tr>
+        <tr>          
+          <th>ID</th>
           <th>Name</th>
           <th>Father Name</th>
           <th>Gender</th>
@@ -17,26 +18,17 @@
       </thead>
       <tbody>
         <tr>
-          <td>          
-            <p class="fw-bold mb-1"><%= @student.name %></p>    
-          </td>
-          <td>
-            <p class="fw-normal mb-1"><%= @student.father_name %></p>            
-          </td>
-          <td>
-            <p class="fw-normal mb-1"><%= @student.gender %></p>            
-          </td>
-          <td>
-            <p class="fw-normal mb-1"><%= @student.date_of_birth %></p>            
-          </td>
-          <td>
-            <p class="fw-normal mb-1"><%= @student.roll_no%></p>            
-          </td>
-          
-          <td>
-            <button type="button" class="btn btn-link btn-sm btn-rounded"><%= link_to 'Edit', edit_student_path %></button>
-          </td>
+          <td><%= @student.id %></td>
+          <td><%= @student.name %></td>
+          <td><%= @student.father_name %></td>
+          <td><%= @student.gender %></td>
+          <td><%= @student.date_of_birth %></td>
+          <td><%= @student.roll_no %></td>
+          <td>-</td>
+          <td>-</td>
+          <td><button type="button" class="btn btn-link btn-sm btn-rounded"><%= link_to 'Edit', edit_student_path %></button></td>
         </tr>
       </tbody>
     </table>
   </div>
+</div>

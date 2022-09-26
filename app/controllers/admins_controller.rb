@@ -23,6 +23,15 @@ class AdminsController < ApplicationController
   def edit
     @admin = Admin.find(params[:id])
   end
+    def update
+    @admin = Admin.find(params[:id])
+
+    if @admin.update(admin_params)
+      redirect_to @admin
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   def admin_params
     params.require(:admin).permit(:name, :gender, :date_of_birth, :user_id, :contact_number, :address)

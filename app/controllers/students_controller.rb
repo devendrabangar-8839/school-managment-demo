@@ -37,6 +37,14 @@ def index
       render :edit, status: :unprocessable_entity
     end
   end
+  def destroy
+    @student = Student.find(params[:id])
+    if @student.destroy
+      redirect_to new_session_path
+    else
+      render signup_path
+    end
+  end
 
   def student_params
     params.require(:student).permit(:name, :father_name,  :gender, :date_of_birth, :roll_no, :user_id, :contact_number,

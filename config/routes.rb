@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :admins
   get "/teachers/:id", to: "teachers#show"
   get "/student/:id", to: "students#show"
+  delete "/students/:id", to: "students#destroy"
   
 
 
