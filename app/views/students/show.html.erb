@@ -19,20 +19,25 @@
         </tr>
       </thead>
       <tbody>
+        
+        <%= id =  StudentTeacher.where(student_id: params[:id]).pluck(:teacher_id) %>
         <tr>
-          <td><%= @student.id %></td>
-          <td><%= @student.name %></td>
-          <td><%= @student.father_name %></td>
-          <td><%= @student.gender %></td>
-          <td><%= @student.date_of_birth %></td>
-          <td><%= @student.roll_no %></td>
-          <td><%= @student.address %></td>
-          <td><%= @student.contact_number %></td>
-          <td><%= @studentteacher %></td>
+            <td><%= @student.id %></td>
+            <td><%= @student.name %></td>
+            <td><%= @student.father_name %></td>
+            <td><%= @student.gender %></td>
+            <td><%= @student.date_of_birth %></td>
+            <td><%= @student.roll_no %></td>
+            <td><%= @student.address %></td>
+            <td><%= @student.contact_number %></td>
+            
+          <% id.each do |s| %>
+            <td><%= Teacher.find_by(id: s).name %></td>
+            
+          <% end %>
           <td>
-            <button type="button" class="btn btn-link btn-sm btn-rounded"><%= link_to 'Edit', edit_student_path %></button>
-            <button type="button" class="btn btn-link btn-sm btn-rounded"><%= link_to 'Show-teachers', teacher_path %></button>
-            <button type="button" class="btn btn-link btn-sm btn-rounded"><%= link_to "Destroy", student_path(@student), data: {
+            <button type="button" class="btn btn-link btn-sm btn-rounded"><%= link_to 'Edit', edit_student_path %></button>      
+            <button type ="button" class="btn btn-link btn-sm btn-rounded"><%= link_to "Destroy", student_path, data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   } %></button>

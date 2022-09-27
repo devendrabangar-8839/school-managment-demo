@@ -3,7 +3,7 @@ class Student < ApplicationRecord
   belongs_to :user
   has_one :classname
   has_many :student_teachers
-  has_many :teachers, through: :student_teachers 
+  has_many :teachers, through: :student_teachers, dependent: :destroy
 
   has_many :admincontrols
   has_many :teachers, through: :admincontrols

@@ -9,9 +9,11 @@ Rails.application.routes.draw do
   resources :teachers
   resources :students
   resources :admins
+  resources :student_teachers
   get "/teachers/:id", to: "teachers#show"
   get "/student/:id", to: "students#show"
   delete "/students/:id", to: "students#destroy"
+  delete "session", to: "sessions#new"
   
 
 

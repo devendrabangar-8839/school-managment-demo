@@ -10,6 +10,9 @@
           <th>Date of Birth</th>
           <th>Salery</th>
           <th>Subject</th>
+          <th>Address</th>
+          <th>Contact</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -43,3 +46,30 @@
       </tbody>
     </table>
   </div>
+  
+<table style="width:100%">
+  <tr>
+    <th>Student name</th>  
+  </tr>
+  <tr>
+    
+     <%= id =  StudentTeacher.where(teacher_id: params[:id]).pluck(:student_id) %>
+    <% id.each do |s| %>
+      <td><%= Student.find_by(id: s).name %></td>            
+    <% end %>
+  </tr>
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+

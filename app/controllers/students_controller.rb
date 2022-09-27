@@ -6,6 +6,7 @@ def index
   end
 
   def show
+
     @student = Student.find(params[:id])
      #@user = User.find(params[:id])
   end
@@ -39,11 +40,8 @@ def index
   end
   def destroy
     @student = Student.find(params[:id])
-    if @student.destroy
-      redirect_to new_session_path
-    else
-      render signup_path
-    end
+    @student.destroy
+    redirect_to signup_path
   end
 
   def student_params

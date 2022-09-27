@@ -1,19 +1,26 @@
-<h1>Hello teacher</h1>
 
-<ul>
-  <% @teachers.each do |teacher| %>
-  <li>
-    <a href="/teachers/<%= teacher.id %>">
-      
-    <%= teacher.id %>  
-    <%= teacher.name %>
-    
-
-    
-   
-  </li>
-
-
-
-  <% end %>
-</ul>
+<div class="container">
+  <h1><center>Teacher - Information</center></h1>
+  <div class="table-responsive">
+    <table class="table align-middle mb-0 bg-white">
+      <thead class="bg-light">
+        <tr>          
+          <th>ID</th>
+          <th>Teacher Name</th>
+          <th>View Details </th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        <% @teachers.each do |teacher| %>
+          <tr>
+            <td><%= teacher.id %></td>
+            <td><%= teacher.name %></td>
+            <td><a href="/teachers/<%= teacher.id %> ">View</a></td>
+            
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+  </div>
+</div>
