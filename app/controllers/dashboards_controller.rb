@@ -1,6 +1,7 @@
 class DashboardsController < ApplicationController
     before_action :authenticate_user!
     before_action :current_user, except: [:index]
+    after_action :admin, only:[:sessios_new_path]
 
   def index
     if

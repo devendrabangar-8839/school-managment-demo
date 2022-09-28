@@ -32,7 +32,7 @@
             <td><%= @student.contact_number %></td>
             
           <% id.each do |s| %>
-            <td><%= Teacher.find_by(id: s).name %></td>
+            <td><%= Teacher.find_by(id: s)&.name %></td>
             
           <% end %>
           <td>

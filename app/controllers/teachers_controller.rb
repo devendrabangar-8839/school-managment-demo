@@ -34,6 +34,11 @@ class TeachersController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+  def destroy
+    @teacher = Teacher.find(params[:id])
+    @teacher.destroy
+  
+  end
 
   def teacher_params
     params.require(:teacher).permit(:name, :gender, :date_of_birth, :salery, :subject_name, :user_id, :contact_number,

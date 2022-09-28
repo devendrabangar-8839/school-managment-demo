@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_23_100919) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_28_110555) do
   create_table "addresses", force: :cascade do |t|
     t.string "address_name"
     t.string "addressable_type"
@@ -21,10 +21,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_23_100919) do
   end
 
   create_table "admincontrols", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "student_id"
     t.integer "teacher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_admincontrols_on_student_id"
     t.index ["teacher_id"], name: "index_admincontrols_on_teacher_id"
   end
@@ -36,19 +36,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_23_100919) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "address_id_id"
     t.integer "contact_number"
     t.string "address"
+    t.index ["address_id_id"], name: "index_admins_on_address_id_id"
     t.index ["user_id"], name: "index_admins_on_user_id"
-  end
-
-  create_table "classes", force: :cascade do |t|
-    t.string "class_name"
-    t.integer "students_id"
-    t.integer "teachers_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["students_id"], name: "index_classes_on_students_id"
-    t.index ["teachers_id"], name: "index_classes_on_teachers_id"
   end
 
   create_table "classnames", force: :cascade do |t|
@@ -88,8 +80,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_23_100919) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "address_id_id"
     t.integer "contact_number"
     t.string "address"
+    t.index ["address_id_id"], name: "index_students_on_address_id_id"
     t.index ["user_id"], name: "index_students_on_user_id"
   end
 
@@ -102,8 +96,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_23_100919) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "address_id_id"
     t.integer "contact_number"
     t.string "address"
+    t.index ["address_id_id"], name: "index_teachers_on_address_id_id"
     t.index ["user_id"], name: "index_teachers_on_user_id"
   end
 
@@ -115,9 +111,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_23_100919) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "admincontrols", "students"
+  add_foreign_key "admincontrols", "teachers"
   add_foreign_key "admins", "users"
-  add_foreign_key "classes", "students", column: "students_id"
-  add_foreign_key "classes", "teachers", column: "teachers_id"
   add_foreign_key "classnames", "students"
   add_foreign_key "classnames", "teachers"
   add_foreign_key "students", "users"

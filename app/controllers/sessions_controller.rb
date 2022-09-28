@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   before_action :authenticate_user!, except: [:create, :new]
   
+
   def index
     redirect_to root_path
   end

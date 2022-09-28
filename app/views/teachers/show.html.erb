@@ -1,4 +1,5 @@
 
+
 <h1><center>Teacher - Information</center></h1>
 <br>
   <div class="table-responsive">
@@ -41,21 +42,28 @@
 
           <td>
             <button type="button" class="btn btn-link btn-sm btn-rounded"><%= link_to 'Edit', edit_teacher_path %></button>
+            <button type ="button" class="btn btn-link btn-sm btn-rounded"><%= link_to "Destroy", teacher_path, data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+
+  <br>
+
+<h1>Student List </h1>
   
 <table style="width:100%">
   <tr>
     <th>Student name</th>  
   </tr>
   <tr>
-    
-     <%= id =  StudentTeacher.where(teacher_id: params[:id]).pluck(:student_id) %>
+     <% id =  StudentTeacher.where(teacher_id: params[:id]).pluck(:student_id) %>
     <% id.each do |s| %>
-      <td><%= Student.find_by(id: s).name %></td>            
+      <td><%= Student.find_by(id: s)&.name %></td><br>            
     <% end %>
   </tr>
 
