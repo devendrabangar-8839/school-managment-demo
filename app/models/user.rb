@@ -8,5 +8,9 @@ class User < ApplicationRecord
   has_one :student
   has_one :teacher
   has_one :admin
-  enum :role, {student: "student" , teacher: "teacher" , admin: "admin"}
+  enum :role, {student: "student" , teacher: "teacher", admin: "admin" }
+
+  # def is_admin?
+  #   self.role == 'admin'
+  # end
 end

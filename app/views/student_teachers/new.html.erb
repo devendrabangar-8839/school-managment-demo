@@ -1,0 +1,20 @@
+<h1>Teacher-Student Assosiation</h1>
+<button><%= link_to 'check students', students_path %></button>
+<%= form_with model: @student_teacher do |form| %>
+  <div>
+    <%= form.label :student_id %><br>
+    <%= form.number_field :student_id %>     
+  </div>
+  <br>
+  <div>
+    <%= form.label :teacher_id %><br>
+    <%= form.number_field :teacher_id %>     
+  </div>
+    
+  
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+

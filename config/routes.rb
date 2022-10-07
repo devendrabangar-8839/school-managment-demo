@@ -6,14 +6,16 @@ Rails.application.routes.draw do
   root "dashboards#index"
   
   resources  :users 
+  resources :admins
   resources :teachers
   resources :students
-  resources :admins
   resources :student_teachers
   get "/teachers/:id", to: "teachers#show"
-  get "/student/:id", to: "students#show"
+  get "/student/:id", to: "students#show" , only: [:show]
   delete "/students/:id", to: "students#destroy"
   delete "session", to: "sessions#new"
+
+  get "dashboards" , to: "dashboards#show"
   
 
 

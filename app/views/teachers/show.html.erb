@@ -6,6 +6,7 @@
     <table class="table align-middle mb-0 bg-white">
       <thead class="bg-light">
         <tr>
+          <th>Teacher ID</th>
           <th>Name</th>
           <th>Gender</th>
           <th>Date of Birth</th>
@@ -13,11 +14,16 @@
           <th>Subject</th>
           <th>Address</th>
           <th>Contact</th>
+          <th>Student name</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <tr>
+          <td>          
+            <p class="fw-bold mb-1"><%= @teacher.id %></p>    
+          </td>
+          
           <td>          
             <p class="fw-bold mb-1"><%= @teacher.name %></p>    
           </td>
@@ -39,13 +45,17 @@
           <td>
             <p class="fw-normal mb-1"><%= @teacher.contact_number%></p>            
           </td>
+          <td>
+            <p class="fw-normal mb-1"><%= @array%></p>            
+          </td>
 
           <td>
             <button type="button" class="btn btn-link btn-sm btn-rounded"><%= link_to 'Edit', edit_teacher_path %></button>
+
+            <button type="button" class="btn btn-link btn-sm btn-rounded"><%= link_to 'Make Assosiation', new_student_teacher_path %></button>
+
             <button type ="button" class="btn btn-link btn-sm btn-rounded"><%= link_to "Destroy", teacher_path, data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></button>
+                    turbo_method: :delete, turbo_confirm: "Are you sure?"} %></button>
           </td>
         </tr>
       </tbody>
@@ -53,31 +63,4 @@
   </div>
 
   <br>
-
-<h1>Student List </h1>
-  
-<table style="width:100%">
-  <tr>
-    <th>Student name</th>  
-  </tr>
-  <tr>
-     <% id =  StudentTeacher.where(teacher_id: params[:id]).pluck(:student_id) %>
-    <% id.each do |s| %>
-      <td><%= Student.find_by(id: s)&.name %></td><br>            
-    <% end %>
-  </tr>
-
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
 
