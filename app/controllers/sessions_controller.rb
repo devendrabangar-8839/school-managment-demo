@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   before_action :authenticate_user!, except: [:create, :new]
-  
+  before_action :current_user, only:[:new, :show]
   
 
   def index
@@ -12,11 +12,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:email])
+    @user = User.find_by(email: params[:email])
     
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      session[:role] = user.role
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      session[:role] = @user.role
       redirect_to sessions_new_path
     else
       flash.now.alert = 'Email or password is invalid'

@@ -17,5 +17,5 @@ class Teacher < ApplicationRecord
   validates :address, presence: true
   
   enum :gender, {male: "male", female: "female"}
-  enum :subject_name, {hindi: "hindi" , english: "english" , mathes: "mathes", science: "science" , evm: "evm"}
+  #enum :subject_name, {hindi: "hindi" , english: "english" , mathes: "mathes", science: "science" , evm: "evm"}
 end

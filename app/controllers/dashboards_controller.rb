@@ -8,15 +8,15 @@ class DashboardsController < ApplicationController
       if @teacher
         redirect_to @teacher
       else
-        redirect_to new_teacher_path(user_id: @current_user.id)
+        redirect_to sessions_new_path
       end
     elsif
       @current_user.student?
-      @student = Student.find_by(user_id: @current_user.id)
+      @student = Student.find_by(user_id: session[:user_id])
       if @student
         redirect_to @student
       else
-        redirect_to new_student_path(user_id: @current_user.id)
+        redirect_to sessions_new_path
       end
     else
       @current_user.admin?
@@ -24,7 +24,7 @@ class DashboardsController < ApplicationController
       if @admin
         redirect_to @admin
       else
-        redirect_to new_admin_path(user_id: @current_user.id)
+        redirect_to sessions_new_path
       end
     end
   end

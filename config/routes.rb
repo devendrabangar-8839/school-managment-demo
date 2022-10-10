@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "/student/:id", to: "students#show" , only: [:show]
   delete "/students/:id", to: "students#destroy"
   delete "session", to: "sessions#new"
+  get "student/admin_students/:id", to: "students#admin_students"
 
   get "dashboards" , to: "dashboards#show"
   

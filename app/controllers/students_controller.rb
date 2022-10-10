@@ -1,8 +1,8 @@
 class StudentsController < ApplicationController
   before_action :authenticate_user!, only: [:show]
-  before_action :verify_role, only:[:show]
-  before_action :set_student, only: [:edit, :update, :destroy]
-  
+  before_action :verify_role, only:[:show, :update]
+  before_action :set_student, only: [:show, :edit, :update, :destroy]
+  before_action :index_condition, only: [:index, :destroy]
 
   def index
     @students = Student.all
@@ -10,10 +10,8 @@ class StudentsController < ApplicationController
 
   def show
     redirect_to root_path if @current_user.teacher?
-    begin
-      str = params[:id] !~ /\D/
+    if @current_user.admin?      
       if str
-
         @student = Student.find_by(id: params[:id])
         @array = []
         @teacher = StudentTeacher.where(student_id: params[:id]).pluck(:teacher_id).uniq
@@ -22,13 +20,24 @@ class StudentsController < ApplicationController
           teacher_name = teacher_objects&.name
           @array << teacher_name 
         end
-        @array
+      else
+        redirect_to root_path
+      end  
+    else
+      if str
+        @student = Student.find_by(user_id: session[:user_id])
+        binding.pry
+        u = @student.user #User.find(session[:user_id]).student.id 
+        @array = []
+        @teacher = StudentTeacher.where(student_id: u).pluck(:teacher_id).uniq
+        @teacher.each do |id|
+          teacher_objects = Teacher.find_by(id: id)
+          teacher_name = teacher_objects&.name
+          @array << teacher_name 
+        end
       else
         redirect_to root_path
       end
-    rescue Exception => e
-      flash.alert = "User not found."
-      redirect_to dashboards_path
     end
   end
 
@@ -61,6 +70,11 @@ class StudentsController < ApplicationController
     @student.destroy  
   end
 
+  def admin_student
+    
+    
+  end
+
   private
 
   def student_params
@@ -71,17 +85,22 @@ class StudentsController < ApplicationController
   def set_student
     @student = Student.find_by(id: params[:id])
     unless @student
-      flash[:notice] = 'Invalid ID passed'
+      flash[:notice] = 'Invalid ID passed, please Login your Account!'
       redirect_to sessions_new_path
     end
   end 
 
   def verify_role
-
-    unless['student'].include? session[:role]
+    unless['student', 'admin'].include? session[:role]
       flash[:notice] = 'You cannot see this page'
       redirect_to sessions_new_path
     end
   end
 
+  def index_condition
+    unless current_user.admin
+      flash[:notice] = 'You dont have access this page, Please Login!'
+      redirect_to root_path
+    end
+  end
 end
