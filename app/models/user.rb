@@ -17,7 +17,7 @@ class User < ApplicationRecord
   has_one :admin
   enum :role, {student: "student" , teacher: "teacher", admin: "admin" }
 
-  # def is_admin?
-  #   self.role == 'admin'
-  # end
+  def is_admin_jd?
+    self.role == 'admin'
+  end
 end

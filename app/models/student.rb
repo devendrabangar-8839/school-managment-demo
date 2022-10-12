@@ -8,6 +8,8 @@ class Student < ApplicationRecord
   has_many :admincontrols
   has_many :teachers, through: :admincontrols
 
+  has_many :addresses, :as => :addressable
+
 
   validates :name, presence: true
   validates :father_name, presence: true
