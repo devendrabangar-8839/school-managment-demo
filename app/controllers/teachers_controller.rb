@@ -13,48 +13,22 @@ class TeachersController < ApplicationController
   def show
     redirect_to root_path if @current_user.student?
     if @current_user.admin?
-      begin
-        str = params[:id] !~ /\D/
-        if str
-          @teacher = Teacher.find_by(id: params[:id])
-          @array = []
-          @student = StudentTeacher.where(teacher_id: params[:id]).pluck(:student_id).uniq
-          @student.each do |id|
-            student_objects = Student.find_by(id: id)
-            student_name = student_objects&.name
-            @array << student_name 
-          end
-          @array
-        else
-
-          redirect_to root_path 
-        end
-      rescue Exception => e
-        flash.alert = "User not found."
-        redirect_to dashboards_path 
-      end
+      
+      @teacher = Teacher.find_by(id: params[:id])
+      @array = []
+      studentteachers = StudentTeacher.where(teacher_id: params[:id]).includes(:student)
+      studentteachers.each do |sn|
+        student_name = sn.student&.name
+        @array << student_name 
+      end           
     else
-      begin
-        str = params[:id] !~ /\D/
-        if str
-          @teacher = Teacher.find_by(user_id: session[:user_id])
-          u = User.find(session[:user_id]).teacher.id 
-          @array = []
-          @student = StudentTeacher.where(teacher_id: u).pluck(:student_id).uniq
-          @student.each do |id|
-            student_objects = Student.find_by(id: id)
-            student_name = student_objects&.name
-            @array << student_name 
-          end
-          @array
-        else
-
-          redirect_to root_path 
-        end
-      rescue Exception => e
-        flash.alert = "User not found."
-        redirect_to dashboards_path 
-      end
+      @teacher = Teacher.find_by(user_id: session[:user_id])
+      @array = []
+      studentteachers = StudentTeacher.where(teacher_id: @teacher).includes(:student)
+      studentteachers.each do |sn|
+        student_name = sn.student&.name
+        @array << student_name 
+      end         
     end
   end
 
@@ -63,10 +37,9 @@ class TeachersController < ApplicationController
   end
 
   def create
-
     @teacher = Teacher.new(teacher_params)
     if @teacher.save
-      redirect_to root_path
+      redirect_to login_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -105,7 +78,7 @@ class TeachersController < ApplicationController
   end
 
   def verify_role
-    unless ['admin', 'teacher'].include? session[:role]
+    unless ['admin', 'teacher'].include? current_user.role
       flash[:notice] = 'You cannot see this page'
       redirect_to sessions_new_path
     end

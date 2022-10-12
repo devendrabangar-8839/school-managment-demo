@@ -11,33 +11,23 @@ class StudentsController < ApplicationController
   def show
     redirect_to root_path if @current_user.teacher?
     if @current_user.admin?      
-      if str
-        @student = Student.find_by(id: params[:id])
-        @array = []
-        @teacher = StudentTeacher.where(student_id: params[:id]).pluck(:teacher_id).uniq
-        @teacher.each do |id|
-          teacher_objects = Teacher.find_by(id: id)
-          teacher_name = teacher_objects&.name
-          @array << teacher_name 
-        end
-      else
-        redirect_to root_path
-      end  
+      
+      @student = Student.find_by(id: params[:id])
+      @array = []
+      @studentteachers = StudentTeacher.where(student_id: params[:id]).includes(:teacher)
+      @studentteachers.each do |sn|
+        teacher_name = sn.teacher&.name
+        @array << teacher_name 
+      end   
     else
-      if str
-        @student = Student.find_by(user_id: session[:user_id])
-        binding.pry
-        u = @student.user #User.find(session[:user_id]).student.id 
-        @array = []
-        @teacher = StudentTeacher.where(student_id: u).pluck(:teacher_id).uniq
-        @teacher.each do |id|
-          teacher_objects = Teacher.find_by(id: id)
-          teacher_name = teacher_objects&.name
-          @array << teacher_name 
-        end
-      else
-        redirect_to root_path
-      end
+      @student = Student.find_by(user_id: session[:user_id])
+      #u = @student.user #User.find(session[:user_id]).student.id 
+      @array = []
+      @studentteachers = StudentTeacher.where(student_id: @student).includes(:teacher)
+      @studentteachers.each do |sn|
+        teacher_name = sn.teacher&.name
+        @array << teacher_name 
+      end  
     end
   end
 
@@ -91,7 +81,7 @@ class StudentsController < ApplicationController
   end 
 
   def verify_role
-    unless['student', 'admin'].include? session[:role]
+    unless['student', 'admin'].include? current_user.role
       flash[:notice] = 'You cannot see this page'
       redirect_to sessions_new_path
     end

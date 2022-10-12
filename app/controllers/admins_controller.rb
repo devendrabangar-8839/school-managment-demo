@@ -1,17 +1,13 @@
 class AdminsController < ApplicationController
-  before_action :set_admin, only: [:edit, :update]
+  before_action :set_admin, only: [:show, :edit, :update]
+  before_action :verify_role, only: [:show]
 
   def index
     @admins = Admin.all
   end
 
   def show
-    begin
-      @admin = Admin.find(params[:id])
-    rescue Exception => e
-      flash.alert = "Admin not found."
-      redirect_to root_path
-    end
+    @admin = Admin.find(params[:id])
   end
 
   def new
@@ -45,8 +41,19 @@ class AdminsController < ApplicationController
     params.require(:admin).permit(:name, :gender, :date_of_birth, :user_id, :contact_number, :address)
   end
 
+  def verify_role
+    unless ['admin'].include? current_user.role
+      flash[:notice] = 'You cannot see this page'
+      redirect_to sessions_new_path
+    end
+  end
+
   def set_admin
     @admin = Admin.find(params[:id])
+    unless @admin
+      flash[:notice] = 'Invalid ID passed, please Login your Account!'
+      redirect_to sessions_new_path
+    end
   end
 
 end

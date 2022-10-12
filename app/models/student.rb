@@ -17,4 +17,7 @@ class Student < ApplicationRecord
   validates_length_of :contact_number, is: 10,  message: "Number must be 10 digit long"  
   validates :address, presence: true
   validates :user_id, presence: true
+
+ 
+
 end

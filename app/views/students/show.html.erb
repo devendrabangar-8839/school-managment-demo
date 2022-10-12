@@ -29,7 +29,7 @@
           <td><%= @student.roll_no %></td>
           <td><%= @student.address %></td>
           <td><%= @student.contact_number %></td>
-          <td><%= @array%></td>
+          <td><%= @array.uniq %></td>
   
           <td>
             <button type="button" class="btn btn-link btn-sm btn-rounded"><%= link_to 'Edit', edit_student_path %></button>      
