@@ -18,8 +18,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
     if @user.save
-      UserMailer.welcome_email(@user.id).deliver
+      UserMailer.welcome_email(@user.id).deliver_now
       session[:user_id] = @user.id
       if @user.student?
         redirect_to new_student_path(user_id: @user.id) 
