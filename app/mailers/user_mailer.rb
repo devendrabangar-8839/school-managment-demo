@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'devendra.codenote@gmail.com'
+  default from: 'smp_admin@gmail.com'
 
   def welcome_email(user_id)
     @user = User.find_by(id: user_id)
