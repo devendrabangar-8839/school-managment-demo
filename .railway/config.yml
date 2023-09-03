@@ -1,0 +1,8 @@
+# .railway/config.yml
+
+version: 2
+environments:
+  production:
+    variables:
+      RUBY_VERSION: 3.0.0 # Set the appropriate Ruby version
+    buildCommand: ./deploy.sh
